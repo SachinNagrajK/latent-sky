@@ -3,12 +3,12 @@ Prepared from the implementation in C:\personal\supa on November 4, 2026.
 
 VERIFIED STATUS
 
-The private web preview is published at:
-https://latent-sky-sachin.aker-holding-7466.chatgpt.site
+The public app is published at:
+https://sachinnagrajk.github.io/latent-sky/
 
 Verified locally: seven real FITS products; both processing cases; full measured input coverage; a roughly three-second cached mosaic; twenty Coma-field detections; nineteen positions matched within two arcseconds to a 470-row reference catalog; coordinate rejection/correction; TypeScript production build; two validation tests.
 
-Pending at preparation time: actual Supabase project connection and deployed job execution, two-user RLS isolation test, live Sodabase response, and two observed Cron executions. Update these only after obtaining evidence from the live services.
+Verified live: both image cases completed through authenticated Supabase jobs, producing 13 artifacts and 20 detections; a scheduled health job also completed. Guest workspaces now replace email sign-in. Embedded Sodabase rule responses, cross-guest isolation, and two observed Cron executions remain acceptance checks until separately verified.
 
 Verified Sodabase project name: latent sky. Account: 0626sachin@gmail.com. No distinct workspace name is displayed. Public app: https://sachinnagrajk.github.io/latent-sky/ . Two authenticated live image jobs completed, storing 13 artifacts and 20 detections. Both SQL migrations are applied. Embedded Sodabase rule evidence and cross-user isolation remain unverified.
 
@@ -31,9 +31,9 @@ Relationships: an authenticated user owns jobs and reviews; each job belongs to 
 
 IMPLEMENTED SUPABASE CONTRACT
 
-Auth identifies the user. submit-run validates the JWT, then calls the enqueue RPC. The RPC accepts only fixed presets, bounds stretch parameters, limits active runs, and returns the existing job for an idempotent retry. A local Python worker claims one queued job using SKIP LOCKED and a timed lease, heartbeats, uploads outputs, then commits only if its lease remains valid. Failed or expired work has at most three total attempts.
+Supabase creates an anonymous guest identity automatically; existing sessions are preserved. The browser calls the authenticated enqueue_job RPC directly. The optional submit-run Edge Function source is supplied but not deployed. The RPC accepts only fixed presets, bounds stretch parameters, limits active runs, and returns the existing job for an idempotent retry. A local Python worker claims one queued job using SKIP LOCKED and a timed lease, heartbeats, uploads outputs, then commits only if its lease remains valid. Failed or expired work has at most three total attempts.
 
-Private output paths start with the owner ID in the astronomy bucket. The browser obtains expiring signed links. RLS policies restrict job-associated reads to the owner. Browser roles cannot write trusted detections, quality snapshots, or job state. The backend service credential belongs only in the worker environment. The supplied migrations define Realtime for jobs/reviews and a five-minute Cron health scheduler. These are implemented contracts, not proof they have been deployed or tested in the live project.
+Private output paths start with the owner ID in the astronomy bucket. The browser obtains expiring signed links. RLS policies restrict job-associated reads to the owner. Browser roles cannot write trusted detections, quality snapshots, or job state. The backend service credential belongs only in the worker environment. The supplied migrations define Realtime for jobs/reviews and a five-minute Cron health scheduler. Both migrations are applied to the live project. Successful live runs verified the core job, worker, storage and result flow.
 
 RESOURCES USED
 
@@ -51,7 +51,7 @@ RESOURCES USED
 
 4. Interface: React 19.2, TypeScript 5.9, Vite 7.2, Supabase JS 2.86, Lucide icons. pnpm-lock.yaml pins the resolved web dependencies.
 
-5. Hosting: private ChatGPT Sites frontend. Supabase is the intended live backend, not the frontend hosting provider. Python scientific computation runs on the builder's laptop and must remain running for new image jobs.
+5. Hosting: public GitHub Pages frontend, with an earlier private ChatGPT Sites preview. Supabase is the live backend; GitHub Pages hosts the public frontend. Python scientific computation runs on the builder's laptop and must remain running for new image jobs.
 
 6. Sodabase: remote MCP endpoint https://sodabase.io/mcp, token held in the worker environment. Current adapter discovers the live check_rule input schema and validates configured arguments before invoking it.
 

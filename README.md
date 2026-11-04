@@ -4,6 +4,9 @@ Real Legacy Surveys DR10 FITS processing with a React explorer, a local Python w
 
 ## Current state
 
+No email or password is required. A private guest workspace is created automatically. Saved results belong to this browser session; clearing site data loses access to that guest workspace. Keep the local Python worker running for new jobs.
+
+
 - Both real image pipelines run locally. The public preview assets are exported from those pipeline outputs, never generated illustrations.
 - The interface supports science/model/residual layers, coverage, tile boundaries, measured source inspection, provenance downloads, and connected-account jobs/reviews.
 - Public app: https://sachinnagrajk.github.io/latent-sky/ . Supabase project pjevtfddhnbubcombfml has both migrations applied. Both authenticated processing cases completed: 13 stored artifacts and 20 detections. The worker runs locally and must stay running. Sodabase project latent sky is connected under the requested account; embedded rule responses remain unconfigured.
