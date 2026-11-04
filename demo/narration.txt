@@ -1,0 +1,11 @@
+The universe has already been photographed. Latent Sky helps us ask new questions of those existing observations.
+
+Start with Cosmic Stitch. Four real telescope cutouts become this custom color view of NGC thirteen hundred. We align their sky coordinates, combine overlapping pixels, and preserve the coverage map. Every image comes with its original source links, file checksums, and processing recipe.
+
+Now open the Faint Source Explorer near the Coma cluster. Switch between the science image, its model, and the residual. These markers come from measurements of the original pixels, before color stretching.
+
+Our verified local run detected twenty sources. Nineteen have reference catalog matches within two arcseconds. Some are still flagged for possible artifacts. A match is evidence to inspect, and an unmatched source is not a confirmed discovery.
+
+The quality panel keeps scientific validation separate from Sodabase checks, and clearly labels checks that have not run.
+
+Latent Sky turns public astronomy archives into an exploration you can inspect, reproduce, and explain.

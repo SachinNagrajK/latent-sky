@@ -6,7 +6,7 @@ Real Legacy Surveys DR10 FITS processing with a React explorer, a local Python w
 
 - Both real image pipelines run locally. The public preview assets are exported from those pipeline outputs, never generated illustrations.
 - The interface supports science/model/residual layers, coverage, tile boundaries, measured source inspection, provenance downloads, and connected-account jobs/reviews.
-- Supabase project creation and Sodabase connection are pending. The web interface explicitly identifies local fixture previews and unavailable checks. A hosted preview alone does not establish a working cloud pipeline.
+- Public app: https://sachinnagrajk.github.io/latent-sky/ . Supabase project pjevtfddhnbubcombfml has both migrations applied. Both authenticated processing cases completed: 13 stored artifacts and 20 detections. The worker runs locally and must stay running. Sodabase project latent sky is connected under the requested account; embedded rule responses remain unconfigured.
 - The asteroid extension is deferred.
 
 ## Start
@@ -33,7 +33,7 @@ npm run dev
 1. Finish creating the Latent Sky project in your Supabase organization (free plan is sufficient). Enter its database password directly in Supabase; do not put it in source control.
 2. Apply `supabase/migrations/202611040001_latent_sky.sql` using the SQL editor or Supabase CLI. Apply subsequent migrations in filename order.
 3. Copy `.env.example` to `.env` and supply your project URL, browser publishable key, and backend service credential. Never prefix a backend credential with `VITE_`.
-4. Deploy the `submit-run` Edge Function using `supabase functions deploy submit-run --project-ref YOUR_REF`. It validates the JWT via `getUser`; the transactional database RPC validates presets, parameter bounds, rate limits, and idempotency.
+4. Deploy the `submit-run` Edge Function using `supabase functions deploy submit-run --project-ref YOUR_REF`. The current web release calls the authenticated enqueue_job RPC directly. It validates identity, presets, parameter bounds, rate limits and idempotency. The supplied Edge Function is optional and has not been deployed.
 5. Add your app origin to Supabase Auth redirect URLs. Enable your preferred email login flow.
 6. Run `python -m worker`. It claims jobs using `SKIP LOCKED`, heartbeats every 25 seconds, and commits results only with the current lease token. Keep the process running.
 7. Restart/build the web app after setting browser environment variables. Sign in, run a case, and verify it survives reload.

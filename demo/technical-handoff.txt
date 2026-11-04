@@ -1,0 +1,76 @@
+LATENT SKY — SCHEMA, RESOURCES, AND QUALITY
+Prepared from the implementation in C:\personal\supa on November 4, 2026.
+
+VERIFIED STATUS
+
+The private web preview is published at:
+https://latent-sky-sachin.aker-holding-7466.chatgpt.site
+
+Verified locally: seven real FITS products; both processing cases; full measured input coverage; a roughly three-second cached mosaic; twenty Coma-field detections; nineteen positions matched within two arcseconds to a 470-row reference catalog; coordinate rejection/correction; TypeScript production build; two validation tests.
+
+Pending at preparation time: actual Supabase project connection and deployed job execution, two-user RLS isolation test, live Sodabase response, and two observed Cron executions. Update these only after obtaining evidence from the live services.
+
+Verified Sodabase project name: latent sky. Account: 0626sachin@gmail.com. No distinct workspace name is displayed. Public app: https://sachinnagrajk.github.io/latent-sky/ . Two authenticated live image jobs completed, storing 13 artifacts and 20 detections. Both SQL migrations are applied. Embedded Sodabase rule evidence and cross-user isolation remain unverified.
+
+DATA SCHEMA
+
+Table                 Purpose and important fields
+sample_cases          Two fixed presets: ID, title, sky coordinates, recipe, enabled.
+jobs                  Owner, case, image/fault/repair/health kind, status, progress, parameters, idempotency key, retry count, lease token/expiry, timestamps, error.
+ingest_staging        Incoming source metadata, coordinates, band, retrieval/observation times, source URL, checksum, validation state, labeled demo-fault flag.
+observations          Validated public archive metadata, product ID, band, coordinates, Storage path, checksum, WCS, units, coverage, source/date metadata.
+job_inputs            Many-to-many links between jobs and reused observations.
+detections            Per-run measured positions, aperture flux/error, size, flags, catalog ID, match separation, classification, artifact reasons.
+artifacts             Per-run file kind, private Storage path, manifest path, checksum, display parameters.
+reviews               Owner's detection label and note, created/updated times.
+pipeline_events       Append-only stage/status, actual processed row count, duration, creation time.
+quality_snapshots     Provider, dataset, tool, verdict, violation count, findings, provider evaluation time, fetch time, raw response.
+demo_admins           Authorized owner IDs for the staging-only demonstration and scheduled health checks.
+
+Relationships: an authenticated user owns jobs and reviews; each job belongs to a case; job_inputs links jobs to observations; detections, artifacts, events, and quality evidence belong to jobs; reviews reference detections. A nullable detection-to-observation column exists, but the current completion function does not populate it; use the job's linked inputs for provenance.
+
+IMPLEMENTED SUPABASE CONTRACT
+
+Auth identifies the user. submit-run validates the JWT, then calls the enqueue RPC. The RPC accepts only fixed presets, bounds stretch parameters, limits active runs, and returns the existing job for an idempotent retry. A local Python worker claims one queued job using SKIP LOCKED and a timed lease, heartbeats, uploads outputs, then commits only if its lease remains valid. Failed or expired work has at most three total attempts.
+
+Private output paths start with the owner ID in the astronomy bucket. The browser obtains expiring signed links. RLS policies restrict job-associated reads to the owner. Browser roles cannot write trusted detections, quality snapshots, or job state. The backend service credential belongs only in the worker environment. The supplied migrations define Realtime for jobs/reviews and a five-minute Cron health scheduler. These are implemented contracts, not proof they have been deployed or tested in the live project.
+
+RESOURCES USED
+
+1. DESI Legacy Imaging Surveys DR10 public cutout service.
+   NGC 1300 center: RA 49.921026 deg, Dec -19.411163 deg. Four 512-pixel g/r/z cubes, 0.7 arcseconds per pixel, 64-pixel overlap. Tile centers use spherical offsets. Mosaic footprint is approximately 11.2 arcminutes.
+   Coma/NGC 4889 center: RA 195.033738 deg, Dec 27.977025 deg. Science, model, and residual g/r/z cubes, each 512 pixels at 0.262 arcseconds per pixel. Field is approximately 2.24 arcminutes.
+   https://www.legacysurvey.org/dr10/description/
+   https://www.legacysurvey.org/acknowledgment/
+
+2. NOIRLab Astro Data Lab, ls_dr10.tractor catalog.
+   Retrieved 470 rows within 0.035 degrees of the Coma center. Actual columns inspected; local subset stores ls_id, ra, dec. The recorded query uses q3c_radial_query and a 5,000-row cap. Retrieval time and SHA-256 are pinned in fixtures/catalogs/manifest.json.
+   https://datalab.noirlab.edu/data/legacy-surveys
+
+3. Processing: Python 3.12, NumPy, Astropy FITS/WCS, reproject mosaicking, SEP source extraction, Pillow output, HTTPX, MCP SDK. Exact installed versions are in requirements.lock.txt.
+
+4. Interface: React 19.2, TypeScript 5.9, Vite 7.2, Supabase JS 2.86, Lucide icons. pnpm-lock.yaml pins the resolved web dependencies.
+
+5. Hosting: private ChatGPT Sites frontend. Supabase is the intended live backend, not the frontend hosting provider. Python scientific computation runs on the builder's laptop and must remain running for new image jobs.
+
+6. Sodabase: remote MCP endpoint https://sodabase.io/mcp, token held in the worker environment. Current adapter discovers the live check_rule input schema and validates configured arguments before invoking it.
+
+DATA QUALITY APPROACH
+
+Layer 1 — Input integrity. Download bounded fixed archive requests; verify checksums, cube layout, expected g/r/z order, finite celestial WCS, and usable nonzero coverage. Preserve floating-point science arrays. Keep original source URLs and retrieval dates. Reject bad metadata before trusted outputs. The archive cutouts do not provide a physical BUNIT or a reliable coadd acquisition date; record that absence instead of inventing values.
+
+Layer 2 — Scientific evidence. Mosaic reprojection uses valid pixel overlap weights. Overlapping existing survey stacks do not create independent extra exposure depth. Source extraction operates on the original r-band data using a local SEP background and five-sigma threshold. Three-pixel aperture flux errors omit correlated-noise correction. Edges, the central galaxy halo, and SEP flags are marked for artifact review. No extended-source label is asserted without a measured PSF. Full survey bit masks are not yet integrated.
+
+Layer 3 — Catalog comparison. Match measured positions to the pinned reference subset with a two-arcsecond tolerance and retain the separation and catalog ID. Nineteen of twenty detections have positional matches, including some artifact-flagged measurements. A missing match is not proof of a new object, a galaxy, or Coma membership.
+
+Layer 4 — Database protection. Curated coordinate and coverage constraints, RLS, owner-scoped private Storage, idempotency, retry limits, and lease-token checks support trustworthy state. These require live integration testing before being claimed as verified production protection.
+
+Layer 5 — Separately attributed Sodabase evidence. Watch staging, observations, detections, and events in the intended project. Record actual rule responses with provider='sodabase'; local checks use provider='app'. Preserve unknown/error/scanning states and provider timestamps. The current generic adapter stores an unparsed successful response as “evidence received”; it does not invent a pass verdict or violation count. Bind and verify exact rule scope and response fields during connection.
+
+QUALITY DEMO
+
+An authorized demo admin creates a labeled staging-only copy with RA=420. Local validation blocks promotion; the original observation is unchanged. Show the affected staging ID and an actual external rule result if available. Correct the copy from its original fixture, retain an event, and repeat the same rule. Claim “zero violations” only if the real response confirms it for the same rule and scope. A table health result does not validate astronomical identity.
+
+WHAT TO SAY IF ASKED WHAT IS LIVE
+
+“The frontend is published, and these images and detections are computed from real archive inputs. The Supabase and Sodabase connection status is shown explicitly; we only call a live workflow verified after a new job completes, its result survives reload, and actual quality evidence is returned.”
