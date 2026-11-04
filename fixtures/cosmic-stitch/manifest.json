@@ -1,0 +1,239 @@
+{
+  "case": "cosmic-stitch",
+  "inputs": [
+    {
+      "source_id": "cosmic-stitch-tile-0",
+      "source_url": "https://www.legacysurvey.org/viewer/fits-cutout?ra=49.874833073&dec=-19.454712720&layer=ls-dr10&pixscale=0.7&bands=grz&size=512",
+      "checksum": "c763eee1d6164406a37fffa65462b2efcd599ec58fcc0100ef9d11e3953812ba",
+      "path": "fixtures\\cache\\cosmic-stitch-tile-0.fits",
+      "ra_deg": 49.87483307327643,
+      "dec_deg": -19.45471272036017,
+      "band": "grz",
+      "units": "not supplied by cutout header",
+      "observed_at": null,
+      "observation_date_reason": "Survey coadd spans multiple exposures; acquisition interval not supplied by cutout",
+      "retrieved_at": "2026-11-04T22:46:12.991656+00:00",
+      "coverage_fraction": 1.0,
+      "wcs_summary": {
+        "WCSAXES": 2,
+        "CRPIX1": 256.5,
+        "CRPIX2": 256.5,
+        "PC1_1": -0.00019444444444444,
+        "PC2_2": 0.00019444444444444,
+        "CDELT1": 1.0,
+        "CDELT2": 1.0,
+        "CUNIT1": "deg",
+        "CUNIT2": "deg",
+        "CTYPE1": "RA---TAN",
+        "CTYPE2": "DEC--TAN",
+        "CRVAL1": 49.874833073,
+        "CRVAL2": -19.45471272,
+        "LONPOLE": 180.0,
+        "LATPOLE": -19.45471272,
+        "MJDREF": 0.0,
+        "RADESYS": "ICRS"
+      },
+      "cached": true,
+      "kind": "tile-0"
+    },
+    {
+      "source_id": "cosmic-stitch-tile-1",
+      "source_url": "https://www.legacysurvey.org/viewer/fits-cutout?ra=49.967218927&dec=-19.454712720&layer=ls-dr10&pixscale=0.7&bands=grz&size=512",
+      "checksum": "1cfdf76c6c78ca1b4567e62883e7f38ccdb84999ccafb161421e3a009d1d3ff3",
+      "path": "fixtures\\cache\\cosmic-stitch-tile-1.fits",
+      "ra_deg": 49.96721892672356,
+      "dec_deg": -19.45471272036017,
+      "band": "grz",
+      "units": "not supplied by cutout header",
+      "observed_at": null,
+      "observation_date_reason": "Survey coadd spans multiple exposures; acquisition interval not supplied by cutout",
+      "retrieved_at": "2026-11-04T22:46:14.211260+00:00",
+      "coverage_fraction": 1.0,
+      "wcs_summary": {
+        "WCSAXES": 2,
+        "CRPIX1": 256.5,
+        "CRPIX2": 256.5,
+        "PC1_1": -0.00019444444444444,
+        "PC2_2": 0.00019444444444444,
+        "CDELT1": 1.0,
+        "CDELT2": 1.0,
+        "CUNIT1": "deg",
+        "CUNIT2": "deg",
+        "CTYPE1": "RA---TAN",
+        "CTYPE2": "DEC--TAN",
+        "CRVAL1": 49.967218927,
+        "CRVAL2": -19.45471272,
+        "LONPOLE": 180.0,
+        "LATPOLE": -19.45471272,
+        "MJDREF": 0.0,
+        "RADESYS": "ICRS"
+      },
+      "cached": true,
+      "kind": "tile-1"
+    },
+    {
+      "source_id": "cosmic-stitch-tile-2",
+      "source_url": "https://www.legacysurvey.org/viewer/fits-cutout?ra=49.874857814&dec=-19.367601612&layer=ls-dr10&pixscale=0.7&bands=grz&size=512",
+      "checksum": "d49f8592b71010946b4b64cb3ac853b214844ecc54d555b1f67161e2333f45f1",
+      "path": "fixtures\\cache\\cosmic-stitch-tile-2.fits",
+      "ra_deg": 49.87485781413095,
+      "dec_deg": -19.36760161237438,
+      "band": "grz",
+      "units": "not supplied by cutout header",
+      "observed_at": null,
+      "observation_date_reason": "Survey coadd spans multiple exposures; acquisition interval not supplied by cutout",
+      "retrieved_at": "2026-11-04T22:46:15.352401+00:00",
+      "coverage_fraction": 1.0,
+      "wcs_summary": {
+        "WCSAXES": 2,
+        "CRPIX1": 256.5,
+        "CRPIX2": 256.5,
+        "PC1_1": -0.00019444444444444,
+        "PC2_2": 0.00019444444444444,
+        "CDELT1": 1.0,
+        "CDELT2": 1.0,
+        "CUNIT1": "deg",
+        "CUNIT2": "deg",
+        "CTYPE1": "RA---TAN",
+        "CTYPE2": "DEC--TAN",
+        "CRVAL1": 49.874857814,
+        "CRVAL2": -19.367601612,
+        "LONPOLE": 180.0,
+        "LATPOLE": -19.367601612,
+        "MJDREF": 0.0,
+        "RADESYS": "ICRS"
+      },
+      "cached": true,
+      "kind": "tile-2"
+    },
+    {
+      "source_id": "cosmic-stitch-tile-3",
+      "source_url": "https://www.legacysurvey.org/viewer/fits-cutout?ra=49.967194186&dec=-19.367601612&layer=ls-dr10&pixscale=0.7&bands=grz&size=512",
+      "checksum": "296c159ae4c6f087f1c160da6e285cb3c3a945a5548b7e7040e3452528335796",
+      "path": "fixtures\\cache\\cosmic-stitch-tile-3.fits",
+      "ra_deg": 49.96719418586904,
+      "dec_deg": -19.36760161237438,
+      "band": "grz",
+      "units": "not supplied by cutout header",
+      "observed_at": null,
+      "observation_date_reason": "Survey coadd spans multiple exposures; acquisition interval not supplied by cutout",
+      "retrieved_at": "2026-11-04T22:46:16.617872+00:00",
+      "coverage_fraction": 1.0,
+      "wcs_summary": {
+        "WCSAXES": 2,
+        "CRPIX1": 256.5,
+        "CRPIX2": 256.5,
+        "PC1_1": -0.00019444444444444,
+        "PC2_2": 0.00019444444444444,
+        "CDELT1": 1.0,
+        "CDELT2": 1.0,
+        "CUNIT1": "deg",
+        "CUNIT2": "deg",
+        "CTYPE1": "RA---TAN",
+        "CTYPE2": "DEC--TAN",
+        "CRVAL1": 49.967194186,
+        "CRVAL2": -19.367601612,
+        "LONPOLE": 180.0,
+        "LATPOLE": -19.367601612,
+        "MJDREF": 0.0,
+        "RADESYS": "ICRS"
+      },
+      "cached": true,
+      "kind": "tile-3"
+    }
+  ],
+  "attribution": "DESI Legacy Imaging Surveys DR10",
+  "source_policy": "https://www.legacysurvey.org/acknowledgment/",
+  "created_at": "2026-11-04T23:09:40.204928+00:00",
+  "tile_polygons": [
+    [
+      [
+        448.0005242599781,
+        0.1376871448728707
+      ],
+      [
+        959.0012855124799,
+        0.00013599581586731802
+      ],
+      [
+        959.137867707872,
+        511.00089753051077
+      ],
+      [
+        448.13777974702,
+        511.1377746653294
+      ]
+    ],
+    [
+      [
+        0.13701729510779614,
+        0.00013599581586731802
+      ],
+      [
+        511.1377785476096,
+        0.1376871448728707
+      ],
+      [
+        511.00052306056773,
+        511.1377746653294
+      ],
+      [
+        0.0004350997156734593,
+        511.000897530511
+      ]
+    ],
+    [
+      [
+        448.00089703779935,
+        448.13790755224244
+      ],
+      [
+        959.0009846574164,
+        448.00102069851494
+      ],
+      [
+        959.1381671723748,
+        959.0017820501475
+      ],
+      [
+        448.1374055393086,
+        959.1379956114774
+      ]
+    ],
+    [
+      [
+        0.1373181500405849,
+        448.0010206985086
+      ],
+      [
+        511.13740576972486,
+        448.1379075522714
+      ],
+      [
+        511.0008972682448,
+        959.1379956114797
+      ],
+      [
+        0.00013563510299263726,
+        959.0017820502228
+      ]
+    ]
+  ],
+  "shape": [
+    960,
+    960
+  ],
+  "parameters": {
+    "stretch": 1,
+    "Q": 8,
+    "color_mapping": {
+      "red": "z",
+      "green": "r",
+      "blue": "g"
+    }
+  },
+  "duration_seconds": 3.156,
+  "python": "3.12.14",
+  "generated_at": "2026-11-04T23:09:43.203801+00:00",
+  "independent_exposure_depth": false
+}
