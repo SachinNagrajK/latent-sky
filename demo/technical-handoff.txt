@@ -8,7 +8,7 @@ https://sachinnagrajk.github.io/latent-sky/
 
 Verified locally: seven real FITS products; both processing cases; full measured input coverage; a roughly three-second cached mosaic; twenty Coma-field detections; nineteen positions matched within two arcseconds to a 470-row reference catalog; coordinate rejection/correction; TypeScript production build; two validation tests.
 
-Verified live: both image cases completed through authenticated Supabase jobs, producing 13 artifacts and 20 detections; a scheduled health job also completed. Guest workspaces now replace email sign-in. Embedded Sodabase rule responses, cross-guest isolation, and two observed Cron executions remain acceptance checks until separately verified.
+Verified live: both image cases completed through authenticated Supabase jobs, producing 13 artifacts and 20 detections; a scheduled health job also completed. Guest workspaces now replace email sign-in. Guest UI verified: both cases completed from the public browser, saved results listed both runs, and a stored review survived reload. Two independent guest sessions verified cross-guest isolation, exclusion of private user jobs, idempotent queue submission, and blocked direct job updates (HTTP 403). Embedded Sodabase rule responses and two observed Cron executions remain acceptance checks.
 
 Verified Sodabase project name: latent sky. Account: 0626sachin@gmail.com. No distinct workspace name is displayed. Public app: https://sachinnagrajk.github.io/latent-sky/ . Two authenticated live image jobs completed, storing 13 artifacts and 20 detections. Both SQL migrations are applied. Embedded Sodabase rule evidence and cross-user isolation remain unverified.
 
