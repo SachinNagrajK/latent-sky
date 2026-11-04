@@ -1,0 +1,9 @@
+numpy>=2.2,<3
+astropy>=7,<8
+reproject>=0.15,<0.22
+sep>=1.4,<2
+Pillow>=11,<13
+httpx>=0.28,<0.29
+python-dotenv>=1,<2
+mcp>=1.20,<2
+pytest>=8,<10

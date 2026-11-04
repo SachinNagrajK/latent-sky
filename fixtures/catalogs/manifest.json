@@ -1,0 +1,8 @@
+{
+  "endpoint": "https://datalab.noirlab.edu/query/query",
+  "query": "SELECT ls_id,ra,dec FROM ls_dr10.tractor WHERE q3c_radial_query(ra,dec,195.033738,27.977025,0.035) LIMIT 5000",
+  "retrieved_at": "2026-11-04T23:09:22.431632+00:00",
+  "count": 470,
+  "sha256": "50f532cdd71494989d7246e2de9540832449598a302b9ee1f03022de94e4a676",
+  "attribution": "NOIRLab Astro Data Lab / DESI Legacy Imaging Surveys DR10"
+}
