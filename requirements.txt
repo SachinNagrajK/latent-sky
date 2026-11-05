@@ -6,4 +6,6 @@ Pillow>=11,<13
 httpx>=0.28,<0.29
 python-dotenv>=1,<2
 mcp>=1.20,<2
+starlette>=0.48,<2
+uvicorn>=0.35,<1
 pytest>=8,<10

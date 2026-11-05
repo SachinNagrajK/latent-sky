@@ -8,7 +8,11 @@ class Backend:
     def __init__(self):
         self.url=os.environ['SUPABASE_URL'].rstrip('/')
         key=os.environ['SUPABASE_SERVICE_ROLE_KEY']
-        self.client=httpx.Client(base_url=self.url,headers={'apikey':key,'Authorization':'Bearer '+key},timeout=60)
+        headers={'apikey':key}
+        # New Supabase secret keys are API keys, not JWTs. Legacy service-role
+        # keys still need the bearer header, so support both during migration.
+        if not key.startswith('sb_secret_'): headers['Authorization']='Bearer '+key
+        self.client=httpx.Client(base_url=self.url,headers=headers,timeout=60)
     def request(self,method,path,**kwargs):
         r=self.client.request(method,path,**kwargs)
         if r.is_error: raise RuntimeError(f'Backend request failed ({r.status_code})')
